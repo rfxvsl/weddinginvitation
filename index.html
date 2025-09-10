@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff0f5; color:#333; }
+    header { text-align:center; padding:60px 20px; background:linear-gradient(to bottom,#f9a8d4,#fff0f5); }
+    header h1 { font-size:2.5em; margin:0; color:#b91c1c; }
+    header p { font-size:1.2em; }
+    section { padding:40px 20px; text-align:center; }
+    h2 { margin-bottom:20px; color:#b91c1c; }
+    .card { background:#fff; padding:20px; margin:10px auto; border-radius:15px; box-shadow:0 3px 6px rgba(0,0,0,0.1); max-width:400px; }
+    .countdown { display:flex; justify-content:center; gap:20px; font-size:1.3em; font-weight:bold; flex-wrap:wrap; }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; max-width:800px; margin:auto; }
+    .gallery img { width:100%; border-radius:10px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+    .guestbook { max-width:600px; margin:auto; }
+    textarea { width:100%; padding:10px; border-radius:10px; border:1px solid #ccc; }
+    button { margin-top:10px; padding:10px 20px; border:none; background:#b91c1c; color:#fff; border-radius:8px; cursor:pointer; }
+    button:hover { background:#a11b1b; }
+    .message { background:#fff; margin-top:10px; padding:10px; border-radius:10px; text-align:left; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    footer { background:#b91c1c; color:#fff; padding:20px; text-align:center; margin-top:30px; }
+  </style>
+</head>
+<body>
+  <!-- Cover -->
+  <header>
+    <h1>Nicola & Salsa</h1>
+    <p>09 Oktober 2025</p>
+  </header>
+
+  <!-- Profil -->
+  <section>
+    <h2>Mempelai</h2>
+    <div class="card">
+      <h3>Nicola Valentino Misno</h3>
+      <p>Putra Kedua dari Bapak Misno dan Ibu Atik</p>
+    </div>
+    <div class="card">
+      <h3>Salsabillah Ekanaiya Putri</h3>
+      <p>Putri Pertama dari Bapak Rofiek dan Ibu Sri</p>
+    </div>
+  </section>
+
+  <!-- Acara -->
+  <section style="background:#fde2e4;">
+    <h2>Acara</h2>
+    <p>Resepsi Nikah</p>
+    <p>09 Oktober 2025, 10:00 WIB</p>
+  </section>
+
+  <!-- Countdown -->
+  <section>
+    <h2>Menuju Hari Bahagia</h2>
+    <div class="countdown" id="countdown"></div>
+  </section>
+
+  <!-- Lokasi -->
+  <section style="background:#fde2e4;">
+    <h2>Lokasi</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=..." 
+      width="90%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <!-- Galeri -->
+  <section>
+    <h2>Galeri</h2>
+    <div class="gallery">
+      <img src="img/prewedding1.jpg" alt="Foto 1">
+      <img src="img/prewedding2.jpg" alt="Foto 2">
+      <img src="img/prewedding3.jpg" alt="Foto 3">
+      <img src="img/prewedding4.jpg" alt="Foto 4">
+    </div>
+  </section>
+
+  <!-- Guestbook -->
+  <section style="background:#fde2e4;">
+    <h2>Ucapan & Doa</h2>
+    <div class="guestbook">
+      <textarea id="guestInput" placeholder="Tulis ucapan..."></textarea>
+      <button onclick="addMessage()">Kirim</button>
+      <div id="messages"></div>
+    </div>
+  </section>
+
+  <!-- Penutup -->
+  <footer>
+    <p>Terima kasih atas doa & restu Anda</p>
+    <p>Nicola & Salsa</p>
+  </footer>
+
+  <script>
+    // Countdown
+    const targetDate = new Date("2025-10-09T10:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance > 0) {
+        const d = Math.floor(distance / (1000*60*60*24));
+        const h = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((distance % (1000*60*60)) / (1000*60));
+        const s = Math.floor((distance % (1000*60)) / 1000);
+        countdownEl.innerHTML = `${d} Hari ${h} Jam ${m} Menit ${s} Detik`;
+      }
+    }, 1000);
+
+    // Guestbook
+    function addMessage() {
+      const input = document.getElementById("guestInput");
+      const messages = document.getElementById("messages");
+      if (input.value.trim() !== "") {
+        const div = document.createElement("div");
+        div.className = "message";
+        div.textContent = input.value;
+        messages.appendChild(div);
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
