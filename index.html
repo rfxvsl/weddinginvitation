@@ -4,23 +4,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Undangan Pernikahan</title>
-  <!-- Font romantis -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global */
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      margin:0; 
+      padding:0; 
+      background:#e6f2ff; 
+      color:#03396c; 
+      font-size:18px; 
+    }
+    h1, h2, h3 { 
+      font-family: 'Great Vibes', cursive; 
+      color:#011f4b; 
+    }
+
+    /* Header */
+    header { 
+      text-align:center; 
+      padding:60px 20px; 
+      background:linear-gradient(to bottom,#87cefa,#e6f2ff); 
+    }
+    header h1 { font-size:4em; margin:0; }
+    header p { font-size:1.5em; margin-top:10px; }
+    .photos { display:flex; justify-content:center; gap:30px; margin-top:30px; }
+    .photos img {
+      width:180px; 
+      height:180px; 
+      border-radius:50%; 
+      object-fit:cover; 
+      box-shadow:0 4px 12px rgba(0,0,0,0.2); 
+      animation: fade 6s infinite alternate;
+    }
+    @keyframes fade {
+      from { opacity:0.4; transform:scale(0.95); }
+      to { opacity:1; transform:scale(1); }
+    }
+
+    /* Section */
+    section { padding:60px 20px; text-align:center; }
+    h2 { margin-bottom:30px; font-size:2.5em; }
+
+    /* Card */
+    .card { 
+      background:#fff; 
+      padding:30px; 
+      margin:20px auto; 
+      border-radius:20px; 
+      box-shadow:0 6px 12px rgba(0,0,0,0.15); 
+      max-width:500px; 
+      font-size:1.2em;
+      transition:transform 0.3s;
+    }
+    .card:hover { transform:translateY(-5px); }
+
+    /* Countdown */
+    .countdown { 
+      display:flex; 
+      justify-content:center; 
+      gap:30px; 
+      font-size:1.5em; 
+      font-weight:bold; 
+      flex-wrap:wrap; 
+    }
+
+    /* Gallery */
+    .gallery { 
+      display:grid; 
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); 
+      gap:20px; 
+      max-width:900px; 
+      margin:auto; 
+    }
+    .gallery img { 
+      width:100%; 
+      border-radius:15px; 
+      box-shadow:0 4px 8px rgba(0,0,0,0.2); 
+      transition:transform 0.4s; 
+    }
+    .gallery img:hover { transform:scale(1.08); }
+
+    /* Guestbook */
+    .guestbook { max-width:700px; margin:auto; }
+    textarea { 
+      width:100%; 
+      padding:15px; 
+      border-radius:15px; 
+      border:1px solid #99ccff; 
+      font-size:1.1em; 
+    }
+    button { 
+      margin-top:15px; 
+      padding:12px 25px; 
+      border:none; 
+      background:#005b96; 
+      color:#fff; 
+      font-size:1.1em; 
+      border-radius:12px; 
+      cursor:pointer; 
+      transition:all 0.3s; 
+    }
+    button:hover { background:#03396c; transform:scale(1.05); }
+    .message { 
+      background:#fff; 
+      margin-top:15px; 
+      padding:12px; 
+      border-radius:12px; 
+      text-align:left; 
+      box-shadow:0 2px 5px rgba(0,0,0,0.1); 
+    }
+
+    /* Footer */
+    footer { 
+      background:#005b96; 
+      color:#fff; 
+      padding:25px; 
+      text-align:center; 
+      margin-top:40px; 
+      font-size:1.2em; 
+    }
+  </style>
 </head>
 <body>
   <!-- Cover -->
   <header>
     <h1>Nicola & Salsa</h1>
     <p>09 Oktober 2025</p>
-    <div class="slideshow">
-      <img src="img/pria.jpg" alt="Nicola" class="active">
-      <img src="img/wanita.jpg" alt="Salsa">
+    <div class="photos">
+      <img src="img/nicola.jpg" alt="Nicola">
+      <img src="img/salsa.jpg" alt="Salsa">
     </div>
   </header>
 
   <!-- Profil -->
-  <section class="mempelai">
+  <section>
     <h2>Mempelai</h2>
     <div class="card">
       <h3>Nicola Valentino Misno</h3>
@@ -33,20 +151,44 @@
   </section>
 
   <!-- Acara -->
-  <section class="acara">
+  <section style="background:#cce6ff;">
     <h2>Acara</h2>
     <p>Resepsi Nikah</p>
     <p>09 Oktober 2025, 10:00 WIB</p>
+    <p><strong>Lokasi:</strong> Jalan Arumdalu RT.04 RW.03 Bocek Karangploso (Toko Pak Mendol)</p>
+  </section>
+
+  <!-- Countdown -->
+  <section>
+    <h2>Menuju Hari Bahagia</h2>
+    <div class="countdown" id="countdown"></div>
+  </section>
+
+  <!-- Lokasi -->
+  <section style="background:#cce6ff;">
+    <h2>Lokasi</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=..." 
+      width="90%" height="350" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy"></iframe>
   </section>
 
   <!-- Galeri -->
-  <section class="galeri">
+  <section>
     <h2>Galeri</h2>
     <div class="gallery">
       <img src="img/prewedding1.jpg" alt="Foto 1">
       <img src="img/prewedding2.jpg" alt="Foto 2">
       <img src="img/prewedding3.jpg" alt="Foto 3">
       <img src="img/prewedding4.jpg" alt="Foto 4">
+    </div>
+  </section>
+
+  <!-- Guestbook -->
+  <section style="background:#cce6ff;">
+    <h2>Ucapan & Doa</h2>
+    <div class="guestbook">
+      <textarea id="guestInput" placeholder="Tulis ucapan..."></textarea>
+      <button onclick="addMessage()">Kirim</button>
+      <div id="messages"></div>
     </div>
   </section>
 
@@ -57,14 +199,33 @@
   </footer>
 
   <script>
-    // Slideshow foto mempelai
-    const slides = document.querySelectorAll(".slideshow img");
-    let idx = 0;
+    // Countdown
+    const targetDate = new Date("2025-10-09T10:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
     setInterval(() => {
-      slides[idx].classList.remove("active");
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add("active");
-    }, 4000);
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance > 0) {
+        const d = Math.floor(distance / (1000*60*60*24));
+        const h = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((distance % (1000*60*60)) / (1000*60));
+        const s = Math.floor((distance % (1000*60)) / 1000);
+        countdownEl.innerHTML = `${d} Hari ${h} Jam ${m} Menit ${s} Detik`;
+      }
+    }, 1000);
+
+    // Guestbook
+    function addMessage() {
+      const input = document.getElementById("guestInput");
+      const messages = document.getElementById("messages");
+      if (input.value.trim() !== "") {
+        const div = document.createElement("div");
+        div.className = "message";
+        div.textContent = input.value;
+        messages.appendChild(div);
+        input.value = "";
+      }
+    }
   </script>
 </body>
 </html>
