@@ -6,40 +6,56 @@
   <title>Undangan Pernikahan Nicola & Salsa</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
-    body {
-      font-family:'Playfair Display', serif;
-      background:#f9f6f1;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Playfair Display',serif;
+      background:#f8f4ef;
       color:#3e2c1c;
       overflow:hidden; /* awalnya ga bisa scroll */
     }
 
+    /* bunga jatuh */
+    .flower{
+      position:fixed;
+      top:-50px;
+      font-size:24px;
+      animation:fall linear forwards;
+      color:#d9a066;
+      opacity:0.8;
+      pointer-events:none;
+      z-index:1000;
+    }
+    @keyframes fall {
+      to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+    }
+
     /* cover */
-    #cover {
+    #cover{
       height:100vh;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       text-align:center;
-      background:linear-gradient(to bottom,#e6d5c3,#f9f6f1);
+      background:linear-gradient(to bottom,#e6d5c3,#f8f4ef);
+      position:relative;
     }
-    #cover h1 {
+    #cover h1{
       font-family:'Great Vibes',cursive;
-      font-size:3.5em;
+      font-size:4em;
       color:#5c3d2e;
-      animation:fadeInDown 1.5s ease;
+      animation:fadeInDown 2s ease;
     }
-    #cover p {
+    #cover p{
       font-size:1.5em;
       color:#7a5c44;
       margin-top:10px;
       font-weight:600;
       animation:fadeInUp 2s ease;
     }
-    #openBtn {
+    #openBtn{
       margin-top:30px;
-      padding:15px 35px;
+      padding:15px 40px;
       font-size:1.2em;
       border:none;
       background:#6d4c41;
@@ -50,45 +66,38 @@
       transition:transform .3s, background .3s;
       animation:bounceIn 2s ease;
     }
-    #openBtn:hover { background:#7a5c44; transform:scale(1.07); }
+    #openBtn:hover{background:#7a5c44;transform:scale(1.07);}
 
-    /* isi undangan */
-    #content {
-      display:none; /* awalnya hidden */
-      animation:fadeIn 1.2s ease;
-    }
-    section {padding:60px 20px; text-align:center;}
-    h2 {
+    /* isi */
+    #content{display:none;}
+    section{padding:70px 20px;text-align:center;}
+    h2{
       font-family:'Great Vibes',cursive;
-      font-size:2.7em;
+      font-size:2.8em;
       margin-bottom:25px;
       color:#5c3d2e;
     }
-    .card {
+    .card{
       background:#fff;
       padding:25px;
       margin:20px auto;
       border-radius:18px;
       box-shadow:0 4px 10px rgba(0,0,0,0.15);
       max-width:500px;
+      transition:transform .3s;
     }
-
-    footer {
+    .card:hover{transform:scale(1.03);}
+    footer{
       background:#5c3d2e;
       color:#fff;
       text-align:center;
-      padding:30px 20px;
+      padding:40px 20px;
     }
 
-    /* animasi */
-    @keyframes fadeIn {from{opacity:0;}to{opacity:1;}}
-    @keyframes fadeInDown {from{opacity:0;transform:translateY(-40px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes fadeInUp {from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes bounceIn {
-      0% {transform:scale(0.5); opacity:0;}
-      60% {transform:scale(1.2); opacity:1;}
-      100% {transform:scale(1);}
-    }
+    /* animasi teks */
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-40px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes bounceIn{0%{transform:scale(0.5);opacity:0;}60%{transform:scale(1.2);opacity:1;}100%{transform:scale(1);}}
   </style>
 </head>
 <body>
@@ -104,9 +113,8 @@
     <button id="openBtn">💌 Buka Undangan</button>
   </div>
 
-  <!-- isi undangan -->
+  <!-- isi -->
   <div id="content">
-    <!-- profil -->
     <section>
       <h2>Mempelai</h2>
       <div class="card">
@@ -119,26 +127,22 @@
       </div>
     </section>
 
-    <!-- acara -->
     <section style="background:#efe7dd;">
       <h2>Acara</h2>
       <p>Resepsi Nikah</p>
       <p>09 Oktober 2025, 10:00 WIB</p>
     </section>
 
-    <!-- lokasi -->
     <section>
       <h2>Lokasi</h2>
       <p>Jalan Arumdalu RT.04 RW.03 Bocek Karangploso (Toko Pak Mendol)</p>
     </section>
 
-    <!-- rekening -->
     <section style="background:#efe7dd;">
       <h2>Kirim Hadiah</h2>
       <p>BCA 8163069596 a/n Nicola</p>
     </section>
 
-    <!-- penutup -->
     <footer>
       <p>Terima kasih atas doa & restu Anda</p>
       <p>Nicola & Salsa</p>
@@ -146,23 +150,30 @@
   </div>
 
   <script>
-    const btn = document.getElementById("openBtn");
-    const cover = document.getElementById("cover");
-    const content = document.getElementById("content");
-    const music = document.getElementById("bgMusic");
+    const btn=document.getElementById("openBtn");
+    const cover=document.getElementById("cover");
+    const content=document.getElementById("content");
+    const music=document.getElementById("bgMusic");
 
-    btn.addEventListener("click", () => {
-      // mainkan musik
-      music.muted = false;
+    btn.addEventListener("click",()=>{
+      music.muted=false;
       music.play().catch(e=>console.log(e));
-
-      // sembunyikan cover, tampilkan konten
-      cover.style.display = "none";
-      content.style.display = "block";
-
-      // izinkan scroll
-      document.body.style.overflow = "auto";
+      content.style.display="block";
+      document.body.style.overflow="auto"; // izinkan scroll
+      window.scrollTo({top:cover.offsetHeight,behavior:"smooth"});
     });
+
+    // animasi bunga jatuh random
+    function createFlower(){
+      const flower=document.createElement("div");
+      flower.classList.add("flower");
+      flower.innerHTML="🌸";
+      flower.style.left=Math.random()*100+"vw";
+      flower.style.animationDuration=3+Math.random()*5+"s";
+      document.body.appendChild(flower);
+      setTimeout(()=>{flower.remove();},8000);
+    }
+    setInterval(createFlower,800);
   </script>
 </body>
 </html>
