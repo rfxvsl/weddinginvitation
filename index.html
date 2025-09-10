@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan</title>
+  <!-- Font romantis -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Cover -->
+  <header>
+    <h1>Nicola & Salsa</h1>
+    <p>09 Oktober 2025</p>
+    <div class="slideshow">
+      <img src="img/pria.jpg" alt="Nicola" class="active">
+      <img src="img/wanita.jpg" alt="Salsa">
+    </div>
+  </header>
+
+  <!-- Profil -->
+  <section class="mempelai">
+    <h2>Mempelai</h2>
+    <div class="card">
+      <h3>Nicola Valentino Misno</h3>
+      <p>Putra Kedua dari Bapak Misno dan Ibu Atik</p>
+    </div>
+    <div class="card">
+      <h3>Salsabillah Ekanaiya Putri</h3>
+      <p>Putri Pertama dari Bapak Rofiek dan Ibu Sri</p>
+    </div>
+  </section>
+
+  <!-- Acara -->
+  <section class="acara">
+    <h2>Acara</h2>
+    <p>Resepsi Nikah</p>
+    <p>09 Oktober 2025, 10:00 WIB</p>
+  </section>
+
+  <!-- Galeri -->
+  <section class="galeri">
+    <h2>Galeri</h2>
+    <div class="gallery">
+      <img src="img/prewedding1.jpg" alt="Foto 1">
+      <img src="img/prewedding2.jpg" alt="Foto 2">
+      <img src="img/prewedding3.jpg" alt="Foto 3">
+      <img src="img/prewedding4.jpg" alt="Foto 4">
+    </div>
+  </section>
+
+  <!-- Penutup -->
+  <footer>
+    <p>Terima kasih atas doa & restu Anda</p>
+    <p>Nicola & Salsa</p>
+  </footer>
+
+  <script>
+    // Slideshow foto mempelai
+    const slides = document.querySelectorAll(".slideshow img");
+    let idx = 0;
+    setInterval(() => {
+      slides[idx].classList.remove("active");
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add("active");
+    }, 4000);
+  </script>
+</body>
+</html>
